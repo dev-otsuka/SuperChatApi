@@ -1,6 +1,7 @@
 plugins {
 	id 'org.springframework.boot' version '2.6.4'
 	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+	id "org.flywaydb.flyway" version "8.5.2"
 	id 'java'
 }
 
@@ -19,13 +20,23 @@ jar {
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.projectlombok:lombok:1.18.16'
+	implementation 'org.springframework.boot:spring-boot-starter-jdbc'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
 	compileOnly 'org.projectlombok:lombok:1.18.22'
 	annotationProcessor 'org.projectlombok:lombok:1.18.22'
-
 	testCompileOnly 'org.projectlombok:lombok:1.18.22'
 	testAnnotationProcessor 'org.projectlombok:lombok:1.18.22'
+
+	implementation 'org.flywaydb:flyway-core'
+	runtimeOnly 'mysql:mysql-connector-java'
+}
+
+flyway {
+	url = 'jdbc:mysql://${env.DB_HOST}:${env.DB_PORT}/${env.DB_SCHEMA}'
+	user = '${env.DB_USER}'
+	password = '${env.DB_PASSWORD}'
+	schemas = ['${env.DB_SCHEMA}']
 }
 
 tasks.named('test') {
