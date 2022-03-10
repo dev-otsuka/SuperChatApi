@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 public class StatusController {
 
-  private static final String RETURN_NORMAL_MESSAGE = "今日よる空きました";
+  private static final String RETURN_NORMAL_MESSAGE = "ok";
 
   @RequestMapping(value = "/status", method = RequestMethod.GET)
   public Status status() {
