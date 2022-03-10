@@ -33,10 +33,10 @@ dependencies {
 }
 
 flyway {
-	url = 'jdbc:mysql://${env.DB_HOST}:${env.DB_PORT}/${env.DB_SCHEMA}'
-	user = '${env.DB_USER}'
-	password = '${env.DB_PASSWORD}'
-	schemas = ['${env.DB_SCHEMA}']
+	url = 'jdbc:mysql://${System.env.DB_HOST}:${System.env.DB_PORT}/${System.env.DB_SCHEMA}'
+	user = '${System.env.DB_USER}'
+	password = '${System.env.DB_PASSWORD}'
+	schemas = ['${System.env.DB_SCHEMA}']
 }
 
 tasks.named('test') {
